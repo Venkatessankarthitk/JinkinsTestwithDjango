@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+<html>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        </script>
+          
+        <script >
+
+            $(document).ready(function(){
+               
+            $.get("http://127.0.0.1:8000/expenses/purchase_items/", function(data, status){            
+                $.each(data, function( k, v ) {
+                    // debugger;
+                    $("#purchase_items").append("<option value="+v.product_name+">"+v.product_name+"</option>");
+//   alert("Value: " + v.product_name );
+  
+});
+$("#UpdatePurchasedetails").click(function(){
+        
+    });
+
+            //     $.each( data, function( key, value ){
+            // $( "#result" ).html(value);
+            //     });
+            // // var items = data.items.map(function (item) {
+            // // return item.key + ': ' + item.value;
+            // 
+        });
+        
+    });
+    function myFunction() {
+    var x = document.getElementById("myDate").value;
+    document.getElementById("demo").innerHTML = x;
+
+}
+function UpdatePurchasedetails(){
+
+}
+        </script>
+        <div class="content container">
+                <div class="row">
+                    <div class="col-md-8">
+
+<h1> You're in Expenses page</h1>
+
+<form action="/expenses/abcd/" onsubmit="UpdatePurchasedetails()">
+
+</div>
+        </div>
+    </div>
+    <br></br>
+    <div>Purchase Items:- <select id=purchase_items name="purchase_items">
+    </select>    
+</div>
+<br></br>
+    <div>Price :- <input type="text" name="price" height="28"><br></div>
+    <br></br>
+    <div>Date  :- <input type="date" id="myDate" name="date" value="2018-07-07" height="28">></div>
+    <br></br>
+    <input type="submit" value="Submit">
+</form>
+</html>
+{% endblock %}

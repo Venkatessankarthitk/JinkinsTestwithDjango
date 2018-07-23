@@ -1,0 +1,31 @@
+google.charts.load('current', {'packages':['table']});
+      google.charts.setOnLoadCallback(drawTable);
+
+      function drawTable() {
+        var jsonData = $.ajax({
+            url: "http://127.0.0.1:8000/expenses/expenses",
+            dataType: "json"
+            }).done(function (jsonData) {
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'product');
+  data.addColumn('number', 'price');
+  
+
+  
+
+  jsonData.forEach(function (row) {
+    console.log(row.parchased_product);
+    data.addRow([        
+      row.parchased_product,
+      row.parchased_price,
+      
+      
+    ]);
+});
+var table  = new google.visualization.Table(document.getElementById('table_div'));
+table.draw(data, {
+    width: 400,
+    height: 240
+  });
+});
+            }

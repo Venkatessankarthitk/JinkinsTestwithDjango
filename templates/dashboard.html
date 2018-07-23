@@ -1,0 +1,189 @@
+<html>
+    {% csrf_token %}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+   <script src="https://cdn.datatables.net/v/dt/dt-1.10.12/se-1.2.0/datatables.min.js"></script>
+   <script src="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.7/js/dataTables.checkboxes.min.js"></script>
+   <script type="text/javascript">
+        $(document).ready(function() {
+        var table = $('#expenses_list_table').DataTable({
+        "ajax": {
+            'url' :"http://127.0.0.1:8000/expenses/expenses",
+            "type": "GET",
+            'dataType' : 'json',
+            "dataSrc":""
+        },      
+        "columns": [
+            { "data": "parchased_product" },
+            { "data": "parchased_price" },
+            { "data": "parchased_date" }
+           
+        ],
+        "order": [[1, 'asc']]
+    } );
+
+} );
+// Load the Visualization API and the piechart package.
+google.charts.load('current', {'packages':['corechart']});
+      
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+        
+      function drawChart() {
+        var jsonData = $.ajax({
+            url: "http://127.0.0.1:8000/expenses/expenses",
+            dataType: "json"
+            }).done(function (jsonData) {
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'product');
+  data.addColumn('number', 'price');
+  
+
+  
+
+  jsonData.forEach(function (row) {
+    console.log(row.parchased_product);
+    // debugger;
+    data.addRow([        
+      row.parchased_product,
+      row.parchased_price,
+      
+      
+    ]);
+  });
+
+  var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+  chart.draw(data, {
+    width: 400,
+    height: 240
+  });
+}).fail(function (jq, text, err) {
+  console.log(text + ' - ' + err);
+});
+
+      }
+      
+
+</script>
+<div id="chart_div" style="width: 450px; height: 250px;"></div>
+<div class="container"></div>
+    <div class="row">
+<div class="col-md-12">
+<div class="card-body">
+    <table id="expenses_list_table" class="display" style="width:95%">
+        <thead>
+            <tr>
+                
+                <th>Product</th>
+                <th>Price </th>
+                <th>Date</th>
+    
+            </tr>
+        </thead>
+        <!-- <tfoot>
+            <tr>
+                <th></th>
+                <th>Purchased var table  = new google.visualization.Table(document.getElementById('table_div'));
+table.draw(data, {
+    width: 400,
+    height: 240
+  });
+});
+            }
+
+</script>
+<div id="chart_div" style="width: 450px; height: 250px;"></div>
+<div id="table_div" style="width: 450px; height: 250px;"></div>
+<div class="container"></div>
+    <div class="row">
+<div class="col-md-12">
+<div class="card-body">
+    <table id="expenses_list_table" class="display" style="width:95%">
+        <thead>
+            <tr>
+                
+                <th>Product</th>
+                <th>Price </th>
+                <th>Date</th>
+    
+            </tr>
+        </thead>
+        <!-- <tfoot>
+            <tr>
+                <th></th>
+                <th>Purchased Date</th>
+                <th>Purchased Product</th>
+                <th>Price</th>e</th>
+                <th>Purchased var table  = new google.visualization.Table(document.getElementById('table_div'));
+table.draw(data, {
+    width: 400,
+    height: 240
+  });
+});
+            }
+
+</script>
+<div id="chart_div" style="width: 450px; height: 250px;"></div>
+<div id="table_div" style="width: 450px; height: 250px;"></div>
+<div class="container"></div>
+    <div class="row">
+<div class="col-md-12">
+<div class="card-body">
+    <table id="expenses_list_table" class="display" style="width:95%">
+        <thead>
+            <tr>
+                
+                <th>Product</th>
+                <th>Price </th>
+                <th>Date</th>
+    
+            </tr>
+        </thead>
+        <!-- <tfoot>
+            <tr>
+                <th></th>
+                <th>Purchased Date</th>
+                <th>Purchased Product</th>
+                <th>Price</th>duct</th>
+                <th>Price</th>var table  = new google.visualization.Table(document.getElementById('table_div'));
+table.draw(data, {
+    width: 400,
+    height: 240
+  });
+});
+            }
+
+</script>
+<div id="chart_div" style="width: 450px; height: 250px;"></div>
+<div id="table_div" style="width: 450px; height: 250px;"></div>
+<div class="container"></div>
+    <div class="row">
+<div class="col-md-12">
+<div class="card-body">
+    <table id="expenses_list_table" class="display" style="width:95%">
+        <thead>
+            <tr>
+                
+                <th>Product</th>
+                <th>Price </th>
+                <th>Date</th>
+    
+            </tr>
+        </thead>
+        <!-- <tfoot>
+            <tr>
+                <th></th>
+                <th>Purchased Date</th>
+                <th>Purchased Product</th>
+                <th>Price</th>
+            </tr>
+        </tfoot> -->
+    </table>
+</div>
+</div>
+</div>
+</div>
+</html>
