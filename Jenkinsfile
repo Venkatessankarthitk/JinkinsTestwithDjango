@@ -17,7 +17,7 @@ node {
             sh 'env/bin/python3.5 manage.py test'
 
         stage 'Deploy'
-            sh './deployment/deploy_prod.sh'
+            sh 'env/bin/python3.5 manage.py runserver'
 
     }
 
