@@ -42,9 +42,6 @@ jobs:
           pipenv install --dev
           pipenv run python manage.py migrate
           pipenv run python manage.py test
-      - name: Test with pytest
-        run: |
-          python manage.py test
           
       #   uses: VaultVulp/action-pipenv@v2.0.1
       #   with:
