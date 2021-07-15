@@ -36,6 +36,8 @@ jobs:
 #       - name: postgres DB #we need a postgres docker image to be booted a side car service to run the tests that needs a db
 #         run: docker-compose up -d
       - name: Create Pipenv environment # install application requirements
+        run: pip install pipenv
+      - name: Pipenv # Pipenv shell
         run: pipenv install
       - name: Pipenv # Pipenv shell
         run: pipenv shell
