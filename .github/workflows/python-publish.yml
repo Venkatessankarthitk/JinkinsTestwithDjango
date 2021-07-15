@@ -38,13 +38,13 @@ jobs:
       - name: Checking docker instance 
         run: docker ps
       - name: psycopg2 prerequisites
-        run: sudo apt-get install libpq-dev
+        run: apt-get install binutils libproj-dev gdal-bin
       - name: Install dependecies
         run: python -m pip install --upgrade pip
       - name: Install pipenv
         run: pip install pipenv
       - name: creating pip pipenv
-        run: pipenv install --dev  --skip-lock
+        run: pipenv install --dev  
       - name: running makemigration
         run: pipenv run python manage.py makemigrations
       - name: running migration
