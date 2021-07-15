@@ -1,0 +1,18 @@
+version: '3'
+
+volumes:
+  postgis-data:
+
+services:
+  db:
+    image: kartoza/postgis:13-3.1
+    volumes:
+      - postgis-data:/var/lib/postgresql
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASS=bipbipbip
+      - POSTGRES_USER=icarusdbuser
+      - POSTGRES_DB=icarus
+      - ALLOW_IP_RANGE=0.0.0.0/0
+      - POSTGRES_MULTIPLE_EXTENSIONS=postgis,hstore,postgis_topology,postgis_raster,pgrouting
