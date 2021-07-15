@@ -50,28 +50,6 @@ jobs:
       - name: running test
         run: pipenv run python manage.py test
           
-      #   uses: VaultVulp/action-pipenv@v2.0.1
-      #   with:
-      #     command: install -d # Install all dependencies, including development ones
-      
-      # - name: Migration
-      #   uses: VaultVulp/action-pipenv@v2.0.1
-      #   with:
-      #     command: python manage.py migrate
-      #  - name: Test
-      #   uses: VaultVulp/action-pipenv@v2.0.1
-      #   with:
-      #     command: python manage.py test
-      # - name: Create Pipenv environment # install application requirements
-      #   run: pip install pipenv
-      # - name: Pipenv # Pipenv shell
-      #   run: pipenv install
-      # - name: Pipenv # Pipenv shell
-      #   run: pipenv shell
-      # - name: Run Migrations # run migrations to create table in side car db container
-      #   run: python manage.py migrate
-      # - name: Run Test # running tests
-      #   run: python manage.py test
 
   package-job: # package job for building and publishing docker images
     runs-on: ubuntu-latest
