@@ -1,0 +1,27 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+djangorestframework = "*"
+psycopg2 = "*"
+rules = "*"
+djangorestframework-simplejwt = "*"
+pycountry = "*"
+djangorestframework-gis = "*"
+drf-nested-routers = "*"
+django-filter = "*"
+django-rest-multiple-models = "*"
+boto3 = "*"
+stripe = "*"
+pyyaml = "*"
+uritemplate = "*"
+
+[dev-packages]
+black = "*"
+freezegun = "*"
+
+[requires]
+python_version = "3.9"
