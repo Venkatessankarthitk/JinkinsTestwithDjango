@@ -36,12 +36,17 @@ jobs:
       - name: postgres DB #we need a postgres docker image to be booted a side car service to run the tests that needs a db
         run: docker-compose up -d
       - name: Install dependecies
-        run: |
-          python -m pip install --upgrade pip
-          pip install pipenv
-          pipenv install --dev
-          pipenv run python manage.py migrate
-          pipenv run python manage.py test
+        run: python -m pip install --upgrade pip
+      - name: Install pipenv
+        run: pip install pipenv
+      - name: creating pip pipenv
+        run: pipenv install --dev  --skip-lock
+      - name: running makemigration
+        run: pipenv run python manage.py makemigrations
+      - name: running migration
+        run: pipenv run python manage.py migrate
+      - name: running test
+        run: pipenv run python manage.py test
           
       #   uses: VaultVulp/action-pipenv@v2.0.1
       #   with:
