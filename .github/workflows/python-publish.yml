@@ -42,9 +42,7 @@ jobs:
       - name: Install dependecies
         run: python -m pip install --upgrade pip
       - name: Install pipenv
-        run: pip install pipenv
-      - name: creating pip pipenv
-        run: pipenv install --dev  
+        run: pip install pipenv 
       - name: running makemigration
         run: pipenv run python manage.py makemigrations
       - name: running migration
