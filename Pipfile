@@ -18,7 +18,6 @@ boto3 = "*"
 stripe = "*"
 pyyaml = "*"
 uritemplate = "*"
-gdal = "*"
 
 [dev-packages]
 black = "*"
