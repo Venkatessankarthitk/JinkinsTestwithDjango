@@ -33,18 +33,28 @@ jobs:
           python-version: '3.x' # if you want multiple python version run just use matrix strategy in job config. See the documentation of GitHub Actions
       - name: Check Python version # checking the python version to see if 3.x is installed.
         run: python --version
-#       - name: postgres DB #we need a postgres docker image to be booted a side car service to run the tests that needs a db
-#         run: docker-compose up -d
-      - name: Create Pipenv environment # install application requirements
-        run: pip install pipenv
-      - name: Pipenv # Pipenv shell
-        run: pipenv install
-      - name: Pipenv # Pipenv shell
-        run: pipenv shell
-      - name: Run Migrations # run migrations to create table in side car db container
-        run: python manage.py migrate
-      - name: Run Test # running tests
-        run: python manage.py test
+      #- name: postgres DB #we need a postgres docker image to be booted a side car service to run the tests that needs a db
+      #run: docker-compose up -d
+      - name: Install dependecies
+        uses: VaultVulp/action-pipenv@v2.0.1
+        with:
+          command: install -d # Install all dependencies, including development ones
+      
+      - name: Test
+        uses: VaultVulp/action-pipenv@v2.0.1
+        with:
+          command: python manage.py migrate
+          command: python manage.py test
+      # - name: Create Pipenv environment # install application requirements
+      #   run: pip install pipenv
+      # - name: Pipenv # Pipenv shell
+      #   run: pipenv install
+      # - name: Pipenv # Pipenv shell
+      #   run: pipenv shell
+      # - name: Run Migrations # run migrations to create table in side car db container
+      #   run: python manage.py migrate
+      # - name: Run Test # running tests
+      #   run: python manage.py test
 
   package-job: # package job for building and publishing docker images
     runs-on: ubuntu-latest
