@@ -37,6 +37,8 @@ jobs:
         run: docker-compose up -d
       - name: Checking docker instance 
         run: docker ps
+      - name: psycopg2 prerequisites
+        run: sudo apt-get install libpq-dev
       - name: Install dependecies
         run: python -m pip install --upgrade pip
       - name: Install pipenv
