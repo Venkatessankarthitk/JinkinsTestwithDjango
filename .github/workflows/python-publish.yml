@@ -45,8 +45,8 @@ jobs:
         run: pip install pipenv 
       - name: creating pipenv environmebt
         run: pipenv install --skip-lock --dev
-      - name: Run black --check .
-        run: pipenv run black --check .
+#       - name: Run black --check .
+#         run: pipenv run black --check .
 #       - name: If needed, commit black changes to the pull request
 #         if: failure()
 #         run: |
