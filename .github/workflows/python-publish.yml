@@ -59,7 +59,7 @@ jobs:
       - name: install isort
         run:  pipenv run pip install isort
       - name: run isort
-        run:  pipenv run isort .
+        run:  pipenv run isort --check .
       - name: running migration
         run: pipenv run python manage.py migrate
       - name: running test
