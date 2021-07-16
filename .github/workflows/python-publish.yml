@@ -48,7 +48,10 @@ jobs:
       - name: run_black_check
         run: |
             pipenv run black  . > /tmp/output.file
-            cat /tmp/output.file
+            if grep -oP reformatted /tmp/output.file; then
+                echo "reformatting function"
+                exit 1
+            if
         #id: run_black_check
         #- name: print-result black changes to the pull request
         #echo ${{ steps.run_black_check.outputs.BLACK_OUTPUT }}
