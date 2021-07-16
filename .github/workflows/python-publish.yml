@@ -46,10 +46,12 @@ jobs:
       - name: creating pipenv environmebt
         run: pipenv install --skip-lock --dev
       - name: run_black_check
-        run: pipenv run black  .
+        run: echo "::set-output name=BLACK_OUTPUT::$(pipenv run black  .)"
         id: run_black_check
       - name: print-result black changes to the pull request
-        run: echo "The selected color is ${{ steps.run_black_check.outputs}}"
+#         with:
+#             tag_name: ${{ steps.run_black_check.outputs.BLACK_OUTPUT }}
+        run: echo "The selected color is ${{ steps.run_black_check.outputs.BLACK_OUTPUT}}"
       - name: running migration
         run: pipenv run python manage.py migrate
       - name: running test
