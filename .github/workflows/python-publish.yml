@@ -44,9 +44,7 @@ jobs:
       - name: Install pipenv
         run: pip install pipenv
       - name: creating pipenv environmebt
-        run: pipenv install --dev  --skip-lock
-      - name: running makemigration
-        run: pipenv run python manage.py makemigrations
+        run: pipenv install --skip-lock
       - name: running migration
         run: pipenv run python manage.py migrate
       - name: running test
