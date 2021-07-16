@@ -47,11 +47,10 @@ jobs:
         run: pipenv install --skip-lock --dev
       - name: Run black check
         run: pipenv run black  .
+        id: run_black
       - name: If needed, commit black changes to the pull request
-        if: failure()
         run: |
-            echo "build is getting because of black"
-            exit 1
+            echo ${{join(steps.run_tests.outputs.*, '\n')}}
       - name: running migration
         run: pipenv run python manage.py migrate
       - name: running test
