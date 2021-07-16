@@ -40,6 +40,8 @@ jobs:
         run: pip install pipenv 
       - name: creating pipenv environmebt
         run: pipenv install --skip-lock 
+      - name: install black
+        run:  pipenv run pip install black
       - name: Run black --check .
         run: pipenv run black --check .
       - name: install isort
