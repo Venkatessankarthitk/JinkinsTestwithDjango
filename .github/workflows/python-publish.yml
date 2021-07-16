@@ -50,7 +50,7 @@ jobs:
         id: run_black_check
       - name: print-result black changes to the pull request
         env:
-            OUTCOME: ${{ steps.run_black_check.outcome }}
+            OUTCOME: ${{ steps.run_black_check.outputs }}
         run: echo "$OUTCOME" 
 
       - name: running migration
