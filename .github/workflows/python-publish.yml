@@ -50,7 +50,7 @@ jobs:
         id: run_black
       - name: If needed, commit black changes to the pull request
         run: |
-            echo ${{join(steps.run_tests.outputs.*, '\n')}}
+            echo ${{join(steps.run_black.outputs.*, '\n')}}
       - name: running migration
         run: pipenv run python manage.py migrate
       - name: running test
