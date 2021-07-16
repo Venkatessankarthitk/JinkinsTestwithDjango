@@ -7,23 +7,50 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='purchasing_items',
+            name="purchasing_items",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('product_name', models.CharField(max_length=255)),
-                ('product_price', models.DecimalField(decimal_places=2, max_digits=6)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("product_name", models.CharField(max_length=255)),
+                ("product_price", models.DecimalField(decimal_places=2, max_digits=6)),
             ],
         ),
         migrations.CreateModel(
-            name='source',
+            name="source",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('source', models.CharField(choices=[('DEBITCARD', 'Debitcard'), ('MONEY', 'Money'), ('CREDITCARD', 'Creditcard'), ('OTHERS', 'Others')], default='MONEY', max_length=12)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "source",
+                    models.CharField(
+                        choices=[
+                            ("DEBITCARD", "Debitcard"),
+                            ("MONEY", "Money"),
+                            ("CREDITCARD", "Creditcard"),
+                            ("OTHERS", "Others"),
+                        ],
+                        default="MONEY",
+                        max_length=12,
+                    ),
+                ),
             ],
         ),
     ]
