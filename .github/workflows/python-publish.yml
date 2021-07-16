@@ -61,7 +61,7 @@ jobs:
   package-job: # package job for building and publishing docker images
     runs-on: ubuntu-latest
     needs: [health-check-job] # will be fired if and only if health-check-job is passed.
-    if: ${{ github.event_name == 'push' }} # will be fired if the trigger event is a push event.
+    if: ${{ GITHUB_REF##*/ == 'master' }} # will be fired if the trigger event is a push event.
     steps:
       - name: Checkout Code # checking out code.
         uses: actions/checkout@v2
