@@ -45,10 +45,6 @@ jobs:
         run: pip install pipenv
       - name: creating pipenv environmebt
         run: pipenv install --skip-lock
-      - name: running migration
-        run: pipenv run python manage.py migrate
-      - name: running test
-        run: pipenv run python manage.py test
       - name: Run black check
         run: pipenv run black  .
       - name: If needed, commit black changes to the pull request
@@ -56,6 +52,11 @@ jobs:
         run: |
             echo "build is getting because of black"
             exit 1
+      - name: running migration
+        run: pipenv run python manage.py migrate
+      - name: running test
+        run: pipenv run python manage.py test
+
           
 
   package-job: # package job for building and publishing docker images
