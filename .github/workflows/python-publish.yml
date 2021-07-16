@@ -48,9 +48,11 @@ jobs:
       - name: Run black check
         run: pipenv run black  .
         id: run_black
-      - name: If needed, commit black changes to the pull request
-        run: |
-            echo ${{join(steps.run_black.outputs.*, '\n')}}
+      - name: print-result black changes to the pull request
+        env:
+            OUTCOME: ${{ steps.mvn-build.outcome }}
+        run: echo "$OUTCOME" 
+
       - name: running migration
         run: pipenv run python manage.py migrate
       - name: running test
