@@ -56,6 +56,8 @@ jobs:
 #         uses: olance/isort-action@v1.0.0
 #         with:
 #           args: .
+      - name: install isort
+        run:  pipenv run pip install isort
       - name: run isort
         run:  pipenv run isort .
       - name: running migration
