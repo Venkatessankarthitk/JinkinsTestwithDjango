@@ -45,12 +45,12 @@ jobs:
         run: pip install pipenv 
       - name: creating pipenv environmebt
         run: pipenv install --skip-lock --dev
-      - name: Run black check
+      - name: run_black_check
         run: pipenv run black  .
-        id: run_black
+        id: run_black_check
       - name: print-result black changes to the pull request
         env:
-            OUTCOME: ${{ steps.mvn-build.outcome }}
+            OUTCOME: ${{ steps.run_black_check.outcome }}
         run: echo "$OUTCOME" 
 
       - name: running migration
