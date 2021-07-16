@@ -45,11 +45,18 @@ jobs:
         run: pip install pipenv 
       - name: creating pipenv environmebt
         run: pipenv install --skip-lock --dev
-      - name: run_black_check
+      - name: Run black --check .
+        run: black --check .
+      - name: If needed, commit black changes to the pull request
+        if: failure()
         run: |
-            pipenv run black  . > /tmp/output.file
-            if grep -oP reformatted /tmp/output.file; then    echo "reformatting function" | exit 1; fi
-                echo "reformatting function"
+            echo "found changes"
+            exit 1
+#       - name: run_black_check
+#         run: |
+#             pipenv run black  . > /tmp/output.file
+#             if grep -oP reformatted /tmp/output.file; then    echo "reformatting function" | exit 1; fi
+#                 echo "reformatting function"
         #id: run_black_check
         #- name: print-result black changes to the pull request
         #echo ${{ steps.run_black_check.outputs.BLACK_OUTPUT }}
