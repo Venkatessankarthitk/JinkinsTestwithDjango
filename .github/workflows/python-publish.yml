@@ -49,10 +49,7 @@ jobs:
         run: pipenv run black  .
         id: run_black_check
       - name: print-result black changes to the pull request
-        env:
-            OUTCOME: ${{ steps.run_black_check.outputs }}
-        run: echo "$OUTCOME" 
-
+        run: echo "The selected color is ${{ steps.run_black_check.outputs}}"
       - name: running migration
         run: pipenv run python manage.py migrate
       - name: running test
