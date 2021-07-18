@@ -21,9 +21,7 @@ RUN set -ex \
     libproj-dev \
     gdal-bin \
     python3-dev \
-    build-base \
-    linux-headers \
-    pcre-dev \
+    libpcre3-dev \
     " \
     && apt-get update && apt-get install -y --no-install-recommends $BUILD_DEPS \
     && pip install pipenv \
