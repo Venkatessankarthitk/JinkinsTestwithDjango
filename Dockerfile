@@ -26,11 +26,11 @@ RUN set -ex \
     " \
     && apt-get update && apt-get install -y --no-install-recommends $BUILD_DEPS
 RUN pip install pipenv
-RUN pip install psycopg2-binary
+RUN pip install pgcli
+RUN pip install psycopg2-binary pgspecial --no-deps
+RUN pip install pgcli --no-deps
 RUN apt-get install -y uwsgi-plugin-python3
 RUN apt-get install -y gcc 
-
-RUN pip install pgcli==2.1.1 --only-binary psycopg2
 RUN apt-get install -y build-essential
 RUN pip install uwsgi
 
