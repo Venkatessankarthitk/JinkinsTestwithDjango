@@ -1,5 +1,5 @@
 # FROM 3.9.6-slim-buster
-FROM ubuntu
+FROM python:3.7-slim
 
 # Create a group and user to run our app
 ARG APP_USER=appuser
