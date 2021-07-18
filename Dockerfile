@@ -35,11 +35,18 @@ RUN apt-get install -y gcc
 RUN apt-get install -y build-essential
 RUN pip install uwsgi
 
-RUN mkdir /app/
-WORKDIR /app/
-COPY ./Pipfile* /app/
-RUN pipenv install --skip-lock
-ADD . /app/
+# RUN mkdir /app/
+# WORKDIR /app/
+# COPY ./Pipfile* /app/
+# RUN pipenv install --skip-lock
+# ADD . /app/
+ENV PYTHONUNBUFFERED 1
+WORKDIR /code                 # creates the directory too
+RUN pip install pipenv
+COPY Pipfile Pipfile.lock  
+RUN pipenv install
+COPY . ./
+
 
 # uWSGI will listen on this port
 EXPOSE 8000
@@ -65,13 +72,13 @@ ENV UWSGI_STATIC_MAP="/static/=/app/static/" UWSGI_STATIC_EXPIRES_URI="/static/.
 # Deny invalid hosts before they get to Django (uncomment and change to your hostname(s)):
 # ENV UWSGI_ROUTE_HOST="^(?!localhost:8000$) break:400"
 
-RUN chmod -R 765 /app/docker-entrypoint.sh
+RUN chmod -R 765 /code/docker-entrypoint.sh
 
 # Change to a non-root user
 USER ${APP_USER}:${APP_USER}
 
 # Uncomment after creating your docker-entrypoint.sh
-ENTRYPOINT ["/app/docker-entrypoint.sh"]
+ENTRYPOINT ["/code/docker-entrypoint.sh"]
 
 # Start uWSGI
 CMD ["uwsgi", "--show-config"]
