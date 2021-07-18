@@ -25,7 +25,6 @@ RUN set -ex \
     libpcre3-dev \
     " \
     && apt-get update && apt-get install -y --no-install-recommends $BUILD_DEPS
-RUN apt-get install binutils libproj-dev gdal-bin
 RUN pip install pipenv
 RUN pip install pgcli
 RUN pip install psycopg2-binary pgspecial --no-deps
@@ -38,7 +37,7 @@ RUN pip install uwsgi
 RUN mkdir /app/
 WORKDIR /app/
 COPY ./Pipfile* /app/
-RUN pipenv install --skip-lock
+RUN pipenv install --skip-lock  --dev
 ADD . /app/
 
 # uWSGI will listen on this port
