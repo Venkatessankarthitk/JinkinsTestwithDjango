@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 django = "*"
 djangorestframework = "*"
-psycopg2 = "==2.9.1"
+psycopg2 = "*"
 rules = "*"
 djangorestframework-simplejwt = "*"
 pycountry = "*"
