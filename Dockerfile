@@ -25,6 +25,7 @@ RUN set -ex \
     libpcre3-dev \
     " \
     && apt-get update && apt-get install -y --no-install-recommends $BUILD_DEPS
+RUN apt-get install binutils libproj-dev gdal-bin
 RUN pip install pipenv
 RUN pip install pgcli
 RUN pip install psycopg2-binary pgspecial --no-deps
