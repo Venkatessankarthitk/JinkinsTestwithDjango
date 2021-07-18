@@ -37,7 +37,7 @@ RUN pip install uwsgi
 RUN mkdir /app/
 WORKDIR /app/
 COPY ./Pipfile* /app/
-RUN pipenv install --system
+RUN pipenv install --skip-lock
 ADD . /app/
 
 # uWSGI will listen on this port
