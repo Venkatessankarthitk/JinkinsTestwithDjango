@@ -21,6 +21,7 @@ RUN set -ex \
     libproj-dev \
     gdal-bin \
     python3-dev \
+    linux-headers-4.19.0-16-all \
     libpcre3-dev \
     " \
     && apt-get update && apt-get install -y --no-install-recommends $BUILD_DEPS \
