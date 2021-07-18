@@ -24,8 +24,8 @@ RUN set -ex \
     linux-headers-4.19.0-16-all \
     libpcre3-dev \
     " \
-    && apt-get update && apt-get install -y --no-install-recommends $BUILD_DEPS \
-    && pip install pipenv \
+    && apt-get update && apt-get install -y --no-install-recommends $BUILD_DEPS
+ RUN pip install pipenv \
     && pip install psycopg2-binary \
     && apt-get install -y uwsgi-plugin-python3 \
     && apt-get install -y gcc 
