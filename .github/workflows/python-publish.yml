@@ -91,10 +91,10 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
-          context: docker build -t icarus-api-0.2 .
+          context: ./
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/simplewhale:latest
+          tags: icarus-api-0.2
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
