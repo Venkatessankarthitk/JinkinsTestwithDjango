@@ -80,4 +80,4 @@ EXPOSE 9000
 #ENTRYPOINT ["/code/docker-entrypoint.sh"]
 
 # Start gunicorn
-CMD ["gunicorn", "--bind", ":8000", "--workers", "3", "app.wsgi:application"]
+CMD ["gunicorn", "--bind", ":8000", "--workers", "3", "budget.wsgi:application"]
