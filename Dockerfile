@@ -43,7 +43,7 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /app/
 RUN pip install pipenv
 COPY Pipfile* /app/
-RUN cd /app && pipenv install --deploy --system
+RUN cd /app && pipenv install 
 COPY . /app/
 RUN pip install gunicorn
 
