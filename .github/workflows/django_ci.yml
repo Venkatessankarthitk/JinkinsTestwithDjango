@@ -53,10 +53,10 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install Dependencies
       run: |
-        apt-get update && apt-get install -y gnupg dirmngr
-        apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
-        echo "deb http://apt.postgresql.org/pub/repos/apt/  bionic-pgdg main" > /etc/apt/sources.list.d/pgdg.list
-        apt-get update &&  apt-get install gdal-bin postgis postgresql-14-postgis-3-scripts
+        sudo apt-get update && sudo apt-get install -y gnupg dirmngr
+        sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
+        sudo echo "deb http://apt.postgresql.org/pub/repos/apt/  bionic-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+        sudo apt-get update &&  sudo apt-get install gdal-bin postgis postgresql-14-postgis-3-scripts
         python -m pip install --upgrade pip
         pip install poetry
         # https://github.com/cjolowicz/hypermodern-python/issues/174
