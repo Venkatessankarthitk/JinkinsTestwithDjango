@@ -1,0 +1,69 @@
+name: Unit Tests
+
+on:
+  pull_request:
+    branches: [ main ]
+
+env:
+  ## Sets environment variable
+  API_KEY: XXXXXXXXXXXX  
+  DEBUG: on
+  AWS_ACCESS_KEY_ID: TEST_KEY
+  AWS_SECRET_ACCESS_KEY: TEST_SECRET
+  AWS_STORAGE_BUCKET_NAME: gac-source-test1
+  AWS_STORAGE_LOADING_BUCKET_NAME: gac-loading-test1
+  AWS_S3_REGION_NAME: us-east-1
+  DB_NAME: postgres
+  DB_USER: postgres
+  DB_HOST: localhost
+  DB_PASSWORD: postgres
+  SECRET_KEY: django-insecure-i7-)vjei7li_l8oi7wr_bqi+3s%vbkv0c4j*u@4n2i4+ztr#bc
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [3.8]
+        db: [postgres]
+        include:
+            - db: postgres
+              db_port: 5432
+
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install Dependencies
+      run: |
+        apt-get update && apt-get install -y gnupg dirmngr
+        apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
+        echo "deb http://apt.postgresql.org/pub/repos/apt/  bionic-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+        apt-get update &&  apt-get install gdal-bin postgis postgresql-14-postgis-3-scripts
+        python -m pip install --upgrade pip
+        pip install poetry
+        # https://github.com/cjolowicz/hypermodern-python/issues/174
+        if [ -f poetry.lock ]; then poetry export --dev -f requirements.txt --output requirements.txt --without-hashes; fi
+        pip install -r requirements.txt
+    - name: Run Tests
+      run: |
+        cd JinkinsTestwithDjango
+        python manage.py test --exclude-tag=local-only
