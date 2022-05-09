@@ -31,6 +31,13 @@ jobs:
         run: docker-compose up -d
       - name: Checking docker instance 
         run: docker ps
+      - name : Testing postgres packages
+        run: |
+            apt-get update && apt-get install -y gnupg dirmngr
+            apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
+            echo "deb http://apt.postgresql.org/pub/repos/apt/  bionic-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+            apt-get update &&  apt-get install gdal-bin postgis postgresql-14-postgis-3-scripts
+        
       - name: psycopg2 prerequisites
         run: sudo apt-get install binutils libproj-dev gdal-bin
       - name: Install dependecies
