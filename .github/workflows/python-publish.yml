@@ -59,14 +59,14 @@ jobs:
         run:  pipenv run isort --check .
       - name: Run Tests
         run: |
-            cd gac_api
+            cd JinkinsTestwithDjango
             python manage.py test --exclude-tag=local-only
 #       - name: running migration
 #         run: pipenv run python manage.py migrate
 #       - name: print github
 #         run: echo ${GITHUB_REF##*/}
-#       - name: running test
-#         run: pipenv run python manage.py test
+      - name: running test
+        run: pipenv run python manage.py test
       
 
           
