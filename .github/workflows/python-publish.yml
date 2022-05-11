@@ -36,7 +36,8 @@ jobs:
             sudo apt-get update && sudo apt-get install -y gnupg dirmngr
             sudo wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
             sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
-            sudo apt-get update &&  sudo apt-get install postgresql-postgis gdal-bin postgis postgresql-14-postgis-3-scripts
+            sudo apt-get update &&  sudo apt-get install gdal-bin postgis postgresql-14-postgis-3-scripts
+            sudo apt list --installed | grep postgresql
             sudo ls -ltr /usr/share/postgresql/13
             sudo cat /usr/share/postgresql/13/extension/postgis.control
         
