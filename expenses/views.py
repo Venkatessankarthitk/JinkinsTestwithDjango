@@ -7,7 +7,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.views.generic.base import TemplateView
-from rest_framework.decorators import api_view, list_route
+from rest_framework.decorators import action 
 
 from expenses.models import expenses_details, purchasing_items
 
@@ -26,7 +26,7 @@ def purchase_item(request):
     return HttpResponse(purchase, content_type="application/json")
 
 
-@list_route(methods=["GET", "POST"])
+@action(detail=False, methods=["GET", "POST"])
 def abcd(request):
     try:
         parchesed_details = dict(
