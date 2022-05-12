@@ -41,22 +41,22 @@ jobs:
             sudo ls -ltr /usr/share/postgresql
             sudo cat /usr/share/postgresql/13/extension/postgis.control
         
-      - name: psycopg2 prerequisites
-        run: sudo apt-get install binutils libproj-dev gdal-bin
+            #       - name: psycopg2 prerequisites
+            #         run: sudo apt-get install binutils libproj-dev gdal-bin
       - name: Install dependecies
         run: python -m pip install --upgrade pip
       - name: Install pipenv
         run: pip install pipenv 
       - name: creating pipenv environmebt
         run: pipenv install --skip-lock 
-      - name: install black
-        run:  pipenv run pip install black
-      - name: Run black --check .
-        run: pipenv run black --check .
-      - name: install isort
-        run:  pipenv run pip install isort
-      - name: run isort
-        run:  pipenv run isort --check .
+#       - name: install black
+#         run:  pipenv run pip install black
+#       - name: Run black --check .
+#         run: pipenv run black --check .
+#       - name: install isort
+#         run:  pipenv run pip install isort
+#       - name: run isort
+#         run:  pipenv run isort --check .
       - name: Run Tests
         run: |
             pipenv run python manage.py test --exclude-tag=local-only
