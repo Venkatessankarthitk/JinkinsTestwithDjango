@@ -7,10 +7,9 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.views.generic.base import TemplateView
-from rest_framework.decorators import api_view, detail_route, list_route
+from rest_framework.decorators import api_view, list_route
 
 from expenses.models import expenses_details, purchasing_items
-
 
 class ExpensesPage(TemplateView):
     template_name = "expenses.html"
